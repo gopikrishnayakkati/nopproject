@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nop
-        image: gopikrishna0527/azdevops:76
+        image: nazziops/project:1
         resources:
           limits:
             memory: "512Mi"

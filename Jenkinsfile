@@ -26,8 +26,8 @@ pipeline{
         stage( 'docker build'){
             steps{
                 sh"docker image build -t nop:1.0 ."
-                sh"docker image tag nop:1.0  <docker repo name>"
-                sh"docker image push <repo name>"
+                sh"docker image tag nop:1.0  nazziops/project:2"
+                sh"docker image push nazziops/project:2"
             }
         }
         stage('terraform'){
