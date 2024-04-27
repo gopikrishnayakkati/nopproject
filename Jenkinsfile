@@ -15,19 +15,13 @@ pipeline{
                 sh 'dotnet build -c Release src/NopCommerce.sln'
                 sh 'dotnet publish -c Release src/Presentation/Nop.Web/Nop.Web.csproj  -o "./published"'
                 }
-            post{
-                success{
-                    sh 'mkdir ./published/bin ./published/logs'
-                    sh 'tar -czvf nop.web.tar.gz ./published/'
-                    archiveArtifacts  artifacts: '**/*.tar.gz'
-                     }
-                } 
+            
         }
         stage( 'docker build'){
             steps{
-                sh"docker image build -t nop:1.0 ."
-                sh"docker image tag nop:1.0  nazziops/project:2"
-                sh"docker image push nazziops/project:2"
+                sh"docker image build -t nop:${BUILD_ID} ."
+                sh"docker image tag nop:${BUILD_ID}  nazziops/project:${BUILD_ID}"
+                sh"docker image push nazziops/project:${BUILD_ID}"
             }
         }
         stage('terraform'){
