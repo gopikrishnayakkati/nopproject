@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nop
+spec:
+  selector:
+    matchLabels:
+      app: nop
+  template:
+    metadata:
+      labels:
+        app: nop
+    spec:
+      containers:
+      - name: nop
+        image: gopikrishna0527/azdevops:76
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
