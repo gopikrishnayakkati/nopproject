@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage( 'VCS'){
             steps{
-                git url: 'https://github.com/Gopi0527/nopCommerce.git',
+                git url: 'https://github.com/Gopi0527/nopproject.git',
                 branch: 'develop'
                 }
             }
@@ -19,6 +19,8 @@ pipeline{
         }
         stage( 'docker build'){
             steps{
+                // This step should not normally be used in your script. Consult the inline help for details.
+                withDockerRegistry(credentialsId: 'docker') {
                 sh"docker image build -t nop:${BUILD_ID} ."
                 sh"docker image tag nop:${BUILD_ID}  nazziops/project:${BUILD_ID}"
                 sh"docker image push nazziops/project:${BUILD_ID}"
@@ -40,4 +42,5 @@ pipeline{
      }
 
 
+    }
 }
