@@ -17,13 +17,17 @@ pipeline{
                 }
             
         }
-        stage( 'docker build'){
-            steps{
-                // This step should not normally be used in your script. Consult the inline help for details.
-                withDockerRegistry(credentialsId: 'docker') {
+        stage ('docker build') {
+            steps {
+               script {
+                withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                 sh"docker image build -t nop:${BUILD_ID} ."
                 sh"docker image tag nop:${BUILD_ID}  nazziops/project:${BUILD_ID}"
                 sh"docker image push nazziops/project:${BUILD_ID}"
+                }
+            }
+            
+           
             }
         }
         stage('terraform'){
@@ -43,4 +47,4 @@ pipeline{
 
 
     }
-}
+
