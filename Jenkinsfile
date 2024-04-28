@@ -22,8 +22,8 @@ pipeline{
                script {
                 withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                 sh"docker image build -t nop:${BUILD_ID} ."
-                sh"docker image tag nop:${BUILD_ID}  nazziops/project:${BUILD_ID}"
-                sh"docker image push nazziops/project:${BUILD_ID}"
+                sh"docker image tag nop:${BUILD_ID}  gopikrishna0527/nopproj:${BUILD_ID}"
+                sh"docker image push gopikrishna0527/nopproj:${BUILD_ID}"
                 }
             }
             
