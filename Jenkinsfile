@@ -33,7 +33,7 @@ pipeline{
         stage('terraform'){
             steps{
                 sh "https://github.com/Gopi0527/nopproject.git"
-                sh "cd nopproject\deploy\terraform"
+                sh "cd nopproject/deploy/terraform"
                 sh "terraform init && terraform apply -auto-approve"
             }
         }
