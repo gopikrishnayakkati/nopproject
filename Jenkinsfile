@@ -22,8 +22,8 @@ pipeline{
                script {
                 withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                 sh"docker image build -t nop:${BUILD_ID} ."
-                sh"docker image tag nop:${BUILD_ID}  gopikrishna0527/nopproj:${BUILD_ID}"
-                sh"docker image push gopikrishna0527/nopproj:${BUILD_ID}"
+                sh"docker image tag nop:${BUILD_ID}  nazziops/project:${BUILD_ID}"
+                sh"docker image push nazziops/project:${BUILD_ID}"
                 }
             }
             
@@ -32,9 +32,10 @@ pipeline{
         }
         stage('terraform'){
             steps{
-                sh "git clone https://github.com/Gopi0527/nopproject.git"
-                sh "cd nopproject/deploy/terraform"
-                sh "terraform init && terraform apply -auto-approve"
+                  sh """cd nopproject ,
+                      cd deploy , 
+                      cd terraform , 
+                     terraform init && terraform apply -auto-approve"""
             }
         }
         stage ('deploy in k8s'){
