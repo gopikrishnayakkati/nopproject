@@ -1,0 +1,13 @@
+name: My first workflow
+
+on: push
+jobs:
+    first_job: 
+        runs-on: ubuntu-latest
+        steps: 
+          - name: welcome message
+            run: echo "hi all" 
+          - name: welcome message
+            run: ls
+          - name: welcome message
+            run: cat Dockerfile
